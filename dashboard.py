@@ -3,8 +3,8 @@ import plotly.express as px
 import streamlit as st
 from ETL.load import listar_tabela
 
-# Título da página e o layout como wide
-st.set_page_config(page_title="Meu Dashboard",layout="wide")
+# Título da página
+st.set_page_config(page_title="Meu Dashboard")
 
 # Carregar os dados
 info_dengue = listar_tabela('InfoDengue')
