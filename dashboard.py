@@ -4,11 +4,17 @@ import streamlit as st
 from ETL.load import listar_tabela
 
 # Título da página
-st.set_page_config(page_title="Meu Dashboard")
+st.set_page_config(page_title="Meu Dashboard", page_icon=":bar_chart:")
 
-# Carregar os dados
-info_dengue = listar_tabela('InfoDengue')
-municipios_ibge = listar_tabela('municipiosIBGE')
+# Carregar os dados em cache
+@st.cache_data
+def carregar_dados():
+    info_dengue = listar_tabela('InfoDengue')
+    municipios_ibge = listar_tabela('municipiosIBGE')
+
+    dados = pd.merge(municipios_ibge, info_dengue, on='municipioId', how='inner')
+
+    return(dados)
 
 # Converter colunas numéricas para tipos adequados
 numeric_columns = [
@@ -45,8 +51,8 @@ labels_columns = {
     "casosAcumuladosAno": "Casos Acumulados por Ano"
 }
 
-# Combinar os DataFrames
-df = pd.merge(municipios_ibge, info_dengue, on='municipioId', how='inner')
+# Carrega os dados que vão estar em cache
+df = carregar_dados()
 
 # Converter colunas numéricas para tipos adequados
 for col in numeric_columns:
