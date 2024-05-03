@@ -8,9 +8,17 @@ Este projeto consiste em uma aplicação Python para extrair dados de município
 - [Municipios IBGE](https://servicodados.ibge.gov.br/api/docs/localidades#api-bq)
 - [InfoDengue](https://info.dengue.mat.br/services/api)
 
+## Estrutura do projeto
+```bash
+- ETL
+    - extract.py
+    - load.py
+    - transform.py
+- app.py
+- dashboard.py
+```
 
 ## Funcionalidades
-
 - **Extrair dados do IBGE:** Busca dados de municípios brasileiros na API do IBGE.
 - **Extrair dados de dengue:** Busca dados de casos de dengue para cada município na API do InfoDengue.
 - **Transformar dados:** Transforma os dados brutos em estruturas de dados adequadas para análise.
@@ -19,7 +27,6 @@ Este projeto consiste em uma aplicação Python para extrair dados de município
 - **Dashboard:** Visualização dos dados epidemiológicos de dengue.
 
 ## Requisitos
-
 - Python
 - Poetry
 - Pandas
@@ -29,27 +36,22 @@ Este projeto consiste em uma aplicação Python para extrair dados de município
 - Plotly
 
 ## Instalação
-
 1. Clone este repositório:
-
    ```bash
    git clone https://github.com/rhanyele/ibge-dengue-data-integration.git
    ```
 
 2. Acesse o diretório do projeto:
-
    ```bash
    cd ibge-dengue-data-integration
    ```
 
 3. Instale as dependências usando Poetry:
-
    ```bash
    poetry install
    ```
 
 4. Configure as variáveis de ambiente no arquivo `.env` com as informações do seu banco de dados PostgreSQL:
-
    ```
    DB_HOST=seu_host
    DB_PORT=sua_porta
@@ -59,30 +61,23 @@ Este projeto consiste em uma aplicação Python para extrair dados de município
    ```
 
 ## Uso
-
-Execute o pipeline ETL usando o Poetry:
-
+Execute o pipeline ETL:
 ```bash
 poetry run python app.py
 ```
 
-Execute o dashboard usando o Poetry:
-
+Execute o dashboard:
 ```bash
 poetry run streamlit run dashboard.py
 ```
 ## Demonstração do dashboard
-
 ![dashboard](https://github.com/rhanyele/ibge-dengue-data-integration/assets/10997593/b11a54e7-ad5b-46f0-939c-af0a10e4945e)
 
 ## Contribuição
-
 Sinta-se à vontade para contribuir com novos recursos, correções de bugs ou melhorias de desempenho. Basta abrir uma issue ou enviar um pull request!
 
 ## Autor
-
 [Rhanyele Teixeira Nunes Marinho](https://github.com/rhanyele)
 
 ## Licença
-
 Este projeto está licenciado sob a [MIT License](LICENSE).
