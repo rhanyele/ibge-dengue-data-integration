@@ -2,20 +2,32 @@
 
 Este projeto consiste em uma aplicação Python para extrair dados de municípios brasileiros do Instituto Brasileiro de Geografia e Estatística ([IBGE](https://www.ibge.gov.br/)) e dados de casos de dengue do sistema [InfoDengue](https://info.dengue.mat.br/). Os dados são então transformados e carregados em um banco de dados PostgreSQL para análise posterior e criação de um dashboard. Foi utilizado o Streamlit para criar um dashboard interativo para monitoramento epidemiológico no Brasil.
 
-![untitled (1)](https://github.com/rhanyele/ibge-dengue-data-integration/assets/10997593/2aef0d52-2756-451d-852f-7f931730ba5b)
+## Diagrama
+![ibge-dengue-data-integration](https://github.com/rhanyele/ibge-dengue-data-integration/assets/10997593/f5cedb99-ee48-42f6-b03c-50a854157569)
 
-### Documentação das APIS
+## Referência
 - [Municipios IBGE](https://servicodados.ibge.gov.br/api/docs/localidades#api-bq)
 - [InfoDengue](https://info.dengue.mat.br/services/api)
 
-## Estrutura do projeto
+## Estrutura
 ```bash
-- ETL
-    - extract.py
-    - load.py
-    - transform.py
-- app.py
-- dashboard.py
+- src
+    - img
+      - dengue.png
+    - pipeline
+      - extract.py
+      - load.py
+      - main.py
+      - transform.py
+  - app.py
+  - charts.py
+  - load_app.py
+- .env
+- .python-version
+- docker-compose.yml
+- Dockerfile
+- poetry.lock
+- pyproject.toml
 ```
 
 ## Funcionalidades
@@ -29,11 +41,7 @@ Este projeto consiste em uma aplicação Python para extrair dados de município
 ## Requisitos
 - Python
 - Poetry
-- Pandas
-- SQLAlchemy
-- PostgreSQL
-- Streamlit
-- Plotly
+- Docker
 
 ## Instalação
 1. Clone este repositório:
@@ -63,13 +71,21 @@ Este projeto consiste em uma aplicação Python para extrair dados de município
 ## Uso
 Execute o pipeline ETL:
 ```bash
-poetry run python app.py
+poetry run python .\src\pipeline\main.py
 ```
 
-Execute o dashboard:
+### Executando o dashboard:
+Executando via poetry:
 ```bash
-poetry run streamlit run dashboard.py
+poetry run streamlit run .\src\app.py
 ```
+### ou
+Executando via docker compose:
+```bash
+docker compose up
+```
+
+
 ## Demonstração do dashboard
 ![dashboard](https://github.com/rhanyele/ibge-dengue-data-integration/assets/10997593/b11a54e7-ad5b-46f0-939c-af0a10e4945e)
 
